@@ -26,7 +26,6 @@ public class User implements Serializable {
 	@Column (name ="Enabled")
 	private boolean enabled;
  
-
 	@Column(name = "UserName")
 	private String userName;
  
@@ -48,14 +47,17 @@ public class User implements Serializable {
 	@Column(name = "ZipCode")
 	private int zipCode;
 	
+	@Column(name = "Email")
+	private String email;
+	
 	@Column(name = "securityQuestionID")
 	private String securityQuestionID;
 	
 	@Column(name = "SecurityQuestionAnswer")
 	private String securityQuestionAnswer;
 	
-	@Column(name = "isAdmin")
-	private boolean isAdmin;
+	@Column(name = "Role")
+	private String role;
 	 
  
  
@@ -67,10 +69,14 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 	
-	public User(long id, String userName, String firstName, String lastName, String address, String city, String state,
-			int zipCode, String securityQuestionID, String securityQuestionAnswer, boolean isAdmin) {
+	
+	public User(long id, String password, boolean enabled, String userName, String firstName, String lastName,
+			String address, String city, String state, int zipCode, int email, String securityQuestionID,
+			String securityQuestionAnswer, String role) {
 		super();
 		this.id = id;
+		this.password = password;
+		this.enabled = enabled;
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -80,9 +86,9 @@ public class User implements Serializable {
 		this.zipCode = zipCode;
 		this.securityQuestionID = securityQuestionID;
 		this.securityQuestionAnswer = securityQuestionAnswer;
-		this.isAdmin = isAdmin;
+		this.role = role;
 	}
- 
+
 	@Override
 	public String toString() {
 		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
@@ -175,11 +181,29 @@ public class User implements Serializable {
 		this.securityQuestionAnswer = securityQuestionAnswer;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
+	public String getRole() {
+		return role;
 	}
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setAdmin(String role) {
+		this.role = role;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 }
