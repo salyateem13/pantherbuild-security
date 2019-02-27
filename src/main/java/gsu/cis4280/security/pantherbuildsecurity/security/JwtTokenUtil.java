@@ -1,8 +1,10 @@
 package gsu.cis4280.security.pantherbuildsecurity.security;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -46,6 +48,37 @@ public class JwtTokenUtil implements Serializable {
 		}
 		
 		return claims;
+	}
+
+	public boolean validateToken(String authToken, UserDetails userDetails) {
+		// TODO Auto-generated method stub
+		
+		JwtUser user = (JwtUser) userDetails;
+		final String username = getUserNameFromToken(authToken);
+		
+		return (username.equals(user.getUsername()) && !isTokenExpired(authToken));
+	}
+
+	private boolean isTokenExpired(String authToken) {
+		final Date expiration = getExpirationDateFromToken(authToken);
+		
+		return expiration.before(new Date());
+	}
+
+	private Date getExpirationDateFromToken(String authToken) {
+
+		Date expiration = null;
+		try {
+			final Claims claims = getClaimsFromToken(authToken);
+			if(claims != null) {
+				expiration = claims.getExpiration();
+			}else {
+				expiration = null;
+			}
+		}catch(Exception e) {
+			expiration = null;
+		}
+		return expiration;
 	}
 
 }

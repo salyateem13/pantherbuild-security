@@ -19,7 +19,14 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@Column (name = "Password")
+	private String password;
+	
+	@Column (name ="Enabled")
+	private boolean enabled;
  
+
 	@Column(name = "UserName")
 	private String userName;
  
@@ -96,7 +103,14 @@ public class User implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public boolean isEnabled() {
+		return enabled;
+	}
 
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
