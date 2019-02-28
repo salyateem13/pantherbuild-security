@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import gsu.cis4280.security.pantherbuildsecurity.UserRepository;
 import gsu.cis4280.security.pantherbuildsecurity.model.User;
 
-@Service
+@Service("userDetailsService")
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
 
 	 @Autowired private UserRepository userRepository;
-
+	 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByEmailIgnoreCase(username);

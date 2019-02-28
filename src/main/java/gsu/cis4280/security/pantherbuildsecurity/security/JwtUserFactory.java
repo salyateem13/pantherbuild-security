@@ -12,8 +12,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import gsu.cis4280.security.pantherbuildsecurity.model.User;
 
-public class JwtUserFactory {
 
+public class JwtUserFactory {
+	
 	public static JwtUser create(User user) {
 			
 	

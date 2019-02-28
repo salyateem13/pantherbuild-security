@@ -1,9 +1,14 @@
 package gsu.cis4280.security.pantherbuildsecurity;
 
+import javax.persistence.EntityManager;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -49,6 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return new AuthenticationTokenFilter();
 	}
 	
+
 	@Override
 	protected void configure(HttpSecurity httSecurity) throws Exception {
 		httSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -66,4 +72,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		httSecurity.headers().cacheControl();
 		httSecurity.headers().httpStrictTransportSecurity().includeSubDomains(true).maxAgeInSeconds(31536000);
 	}
+	
 }

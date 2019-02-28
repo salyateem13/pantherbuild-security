@@ -22,7 +22,7 @@ public class JwtTokenUtil implements Serializable {
 	private String secret;
 	
 	@Value ("$jwt.expiration")
-	private Long expiration;
+	private String expiration;
 	
 	
 	public String getUserNameFromToken(String token) {
