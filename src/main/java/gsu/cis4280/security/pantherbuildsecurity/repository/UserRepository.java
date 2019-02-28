@@ -1,4 +1,4 @@
-package gsu.cis4280.security.pantherbuildsecurity;
+package gsu.cis4280.security.pantherbuildsecurity.repository;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.CrudRepository;

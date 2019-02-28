@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import gsu.cis4280.security.pantherbuildsecurity.UserRepository;
+import gsu.cis4280.security.pantherbuildsecurity.repository.UserRepository;
 import gsu.cis4280.security.pantherbuildsecurity.model.User;
 
 @Service("userDetailsService")
