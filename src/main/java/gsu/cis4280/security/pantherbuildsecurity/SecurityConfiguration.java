@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Autowired private UserDetailsService userDetailsService;
 	@Autowired private JwtAuthenticationEntryPoint authenticationEntryPoint;
+	
 	@Autowired
 	public void configureAuthentication (AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(PasswordEncoder());
@@ -48,7 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return new AuthenticationTokenFilter();
 	}
 	
-	protected void confiugure(HttpSecurity httSecurity) throws Exception {
+	@Override
+	protected void configure(HttpSecurity httSecurity) throws Exception {
 		httSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		.authorizeRequests()
 		.antMatchers("/**").permitAll()
