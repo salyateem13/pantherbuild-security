@@ -35,10 +35,15 @@ public class AuthenticationController {
 	@PostMapping (value= "/login")
 	public ResponseEntity <UserDTO> login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 		try {
+			
 			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()  ) );
 			final JwtUser userDetails = (JwtUser)authentication.getPrincipal();
+			
+			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			final String token = jwtTokenUtil.generateToken(userDetails);
+			
+			
 			response.setHeader("Token", token);
 			return new ResponseEntity<UserDTO> (new UserDTO(userDetails.getUser(), token), HttpStatus.OK);
 		}catch(Exception e) {

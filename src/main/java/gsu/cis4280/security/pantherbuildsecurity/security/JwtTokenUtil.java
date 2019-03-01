@@ -24,7 +24,7 @@ public class JwtTokenUtil implements Serializable {
 	@Value ("${jwt.secret}")
 	private String secret;
 	
-	@Value ("$jwt.expiration")
+	@Value ("${jwt.expiration}")
 	private String expiration;
 	
 	
